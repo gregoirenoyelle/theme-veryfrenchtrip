@@ -1,0 +1,44 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:400,300,700|Roboto+Slab:300,400');
+@import url('style.css');
+
+.mceContentBody {
+    background-color: #fff;
+}
+/* ajustement depuis WordPress 4 */
+.mceContentBody.wp-autoresize {
+    padding: 10px !important;
+    width: 100%;
+}
+.mceContentBody ul {
+    margin-bottom: 26px;
+}
+.mceContentBody li {
+    list-style-type: disc;
+    margin-left: 40px;
+}
+.mceContentBody .wp-caption {
+    border: none;
+    background: transparent;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 4px;
+    -moz-border-radius: 0;
+    -khtml-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+.mceContentBody .wp-caption img {
+    margin: 5px;
+}
+.mceContentBody .wp-caption .wp-caption-text {
+    margin: 0 0 4px;
+}
+.mceContentBody .wp-caption .wp-caption-dd {
+    color: #000;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 18px;
+}
+.mceContentBody .wp-smiley {
+    margin:0;
+}
