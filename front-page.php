@@ -51,22 +51,19 @@ function vft_loop_home() {
 
 			// ZONE Editeur Colonne
 			elseif( get_row_layout() == 'gn_z_editeur_grid' ):
-				$output .= "<section class='bloc-accueil bloc-accueil-editor clearfix'>";
+				$output .= '<section class="bloc-accueil bloc-accueil-editor clearfix">';
 				if ( get_sub_field('bloc_title', 'option') ) :
-					$output .= "<h4 class='widget-title widget-title-home'>" . get_sub_field('bloc_title', 'option') . "</h4>";
+					$output .= sprintf('<h4 class="widget-title widget-title-home">%s</h4>' , get_sub_field('bloc_title', 'option') );
 				endif;
 				if ( have_rows('repeat_edit', 'option') ) :
 					while ( have_rows('repeat_edit', 'option') ) : the_row();
-						$w = get_sub_field('width_bloc', 'option');
-						$output .= "<article class='editor-bloc entry' style='width:{$w}%;' itemscope='itemscope' itemtype='http://schema.org/BlogPosting' itemprop='blogPost'>";
-						$output .= get_sub_field('editeur', 'option');
-						$output .= "</article>";
+						$output .= sprintf( '<article class="editor-bloc entry" style="width:%s%%" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">%s</article>', get_sub_field('width_bloc', 'option'), get_sub_field('editeur', 'option') );
 					endwhile;
 				else :
-					$output .=  "<p>Aucune rangée n'est disponible";
+					$output .=  '<p>Aucune rangée n\'est disponible</p>';
 				endif; // END if ( have_rows('repeat_edit', 'option')
-				$output .= "<br class='clearfix'>";
-				$output .= "</section>";
+				$output .= '<br class="clearfix">';
+				$output .= '</section>';
 
 			// ZONE Podcast en Une
 			elseif( get_row_layout() == 'gn_z_featured' ):
