@@ -1,7 +1,5 @@
 <?php
 // gnaction: DOSSIER LANGUAGE
-define('GENESIS_LANGUAGES_DIR', STYLESHEETPATH.'/lib-gn/language-genesis');
-define('GENESIS_LANGUAGES_URL', STYLESHEETPATH.'/lib-gn/language-genesis');
 load_child_theme_textdomain( 'minimum', get_stylesheet_directory() . '/lib-gn/language-theme' );
 
 //* Start the engine
