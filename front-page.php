@@ -131,7 +131,7 @@ function vft_loop_home() {
 						if ( has_post_thumbnail() ) {
 							$output .= sprintf( '<a href="%s">%s</a>', $permalink, get_the_post_thumbnail('', 'medium') );
 						}
-						$output .= sprintf( '<h2 class="entry-title"><a href="%s">%s gougou</a></h2>', $permalink, get_the_title() ) ;
+						$output .= sprintf( '<h2 class="entry-title"><a href="%s">%s</a></h2>', $permalink, get_the_title() ) ;
 						$output .= sprintf( '<p>%s<br><a href="%s">[ Lire la suite ]</a></p>', get_the_excerpt(), $permalink );
 						$output .= '</article>';
 					endwhile; wp_reset_postdata();
