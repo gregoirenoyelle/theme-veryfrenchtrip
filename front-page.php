@@ -45,9 +45,9 @@ function vft_loop_home() {
 			// ZONE Text Slogan
 			if( get_row_layout() == 'gn_z_text_hero' ):
 				$ft = get_sub_field('taille_texte', 'option');
-				$output .= "<section class='bloc-accueil bloc-accueil-hero clearfix'>";
-				$output .= "<h2 style='font-size:{$ft}px; text-align: center;'>" . get_sub_field('zone_texte', 'option') . "</h2>";
-				$output .= "</section>";
+				$output .= '<section class="bloc-accueil bloc-accueil-hero clearfix">';
+				$output .= sprintf ('<h2 style="font-size:%spx; text-align: center;">%s</h2>', $ft, get_sub_field('zone_texte', 'option') );
+				$output .= '</section>';
 
 			// ZONE Editeur Colonne
 			elseif( get_row_layout() == 'gn_z_editeur_grid' ):
