@@ -65,7 +65,7 @@ function vft_loop_home() {
 				$output .= '<br class="clearfix">';
 				$output .= '</section>';
 
-			// ZONE Podcast en Une
+			// ZONE Dernier Podcast
 			elseif( get_row_layout() == 'gn_z_featured' ):
 				$titre_widget = get_sub_field('bloc_title', 'option');
 				// Affichage du dernier podcast
