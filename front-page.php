@@ -78,7 +78,7 @@ function vft_loop_home() {
 				);
 				$query = new WP_Query($args);
 
-				$output .= "<section class='bloc-accueil bloc-accueil-featured clearfix'>";
+				$output .= '<section class="bloc-accueil bloc-accueil-featured clearfix">';
 
 				if ( $titre_widget ) :
 					$output .= sprintf('<h4 class="widget-title widget-title-home">%s</h4>', $titre_widget);
@@ -100,63 +100,53 @@ function vft_loop_home() {
 
 				$output .= '</section>';
 
-			// ZONE Boucle de contenu
+			// ZONE Boucle de Podcast
 			elseif( get_row_layout() == 'gn_z_query_content' ):
-				$type = get_sub_field('type_post', 'option');
+				$titre = get_sub_field('bloc_title', 'option');
 				$posts = get_sub_field('number_post', 'option');
-				$offset = get_sub_field('number_offset','option');
-				$archi_link = get_sub_field('link_archive', 'option');
-				$archi_text = get_sub_field('text_archive', 'option');
-				if ( $type == 'post' ) :
-					$taxo = get_sub_field('taxo_post', 'option');
-				else :
-					$taxo = get_sub_field('taxo_podcast', 'option');
-				endif;
+				$offset = get_sub_field('number_offset', 'option');
+				$taxo = get_sub_field('taxo_podcast', 'option');
 				$display_archive = get_sub_field('display_archive', 'option');
 				$archive_text = get_sub_field('text_archive', 'option');
 				$archive_link = get_sub_field('link_archive', 'option');
 				$args = array(
-					'post_type' => $type,
+					'post_type' => 'podcast',
 					'posts_per_page' => $posts,
 					'offset' => $offset,
 					'tax_query' => array(
 						array(
-							'taxonomy' => $taxo->taxonomy,
-							'field' => 'slug',
-							'terms' => $taxo->slug
+							'taxonomy' => 'series',
+							'field' => 'ID',
+							'terms' => $taxo
 						),
 					),
 				);
 				$query = new WP_Query($args);
-				// aff_v($taxo);
-				// aff_v($query); exit;
-				$output .= "<section class='bloc-accueil bloc-accueil-loop clearfix'>";
-				if ( get_sub_field('bloc_title', 'option') ) :
-					$output .= "<h4 class='widget-title widget-title-home'>" . get_sub_field('bloc_title', 'option') . "</h4>";
+				$output .= '<section class="bloc-accueil bloc-accueil-loop clearfix">';
+				if ( $titre ) :
+					$output .= sprintf( '<h4 class="widget-title widget-title-home"></h4>', $titre );
 				endif;
 				if ( $query->have_posts() ) :
 					while ( $query->have_posts() ) : $query->the_post();
-						$post_ID = get_the_ID();
-						$link = get_permalink($post_ID);
-
+						$permalink = get_permalink();
 						$class = get_post_class();
-						$output .= "<article class='" . join(' ', $class) . "' itemscope='itemscope' itemtype='http://schema.org/BlogPosting' itemprop='blogPost'>";
-						$thumbnail = get_the_post_thumbnail( $post_ID, 'medium', array('class' => 'aligncenter') );
-						if ( $thumbnail ) {
-							$output .= "<a href='{$link}'>" . $thumbnail . "</a>";
+						$output .= sprintf( '<article class="%s" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">', join(' ', $class) );
+						if ( has_post_thumbnail() ) {
+							$output .= sprintf( '<a href="%s">%s</a>', $permalink, get_the_post_thumbnail('', 'medium') );
 						}
-						$output .= "<h2 class='entry-title'><a href='{$link}'>" . get_the_title() . "</a></h2>";
-						$output .= "<p>" . get_the_excerpt() . "<br><a href='{$link}'>[ Lire la suite ]</a></p>";
-						$output .= "</article>";
+						$output .= sprintf( '<h2 class="entry-title"><a href="%s">%s gougou</a></h2>', $permalink, get_the_title() ) ;
+						$output .= sprintf( '<p>%s<br><a href="%s">[ Lire la suite ]</a></p>', get_the_excerpt(), $permalink );
+						$output .= '</article>';
 					endwhile; wp_reset_postdata();
-					if ( get_sub_field('display_archive', 'option') ) :
-						$output .= "<p class='lien-archive'><a href='{$archi_link}'>{$archi_text}</a></p>";
+
+					if ( $display_archive ) :
+						$output .= sprintf( '<p class="lien-archive"><a href="%s">%s</a></p>', $archive_link, $archive_text  );
 					endif;
 
 				else :
-					$output .= "<p>Oups ! pas de contenu avec cette taxonomie mon ami(e)</p>";
+					$output .= '<p>Oups ! pas de contenu avec cette taxonomie mon ami(e)</p>';
 				endif;
-				$output .= "</section>";
+				$output .= '</section>';
 
 			endif;
 
@@ -166,7 +156,7 @@ function vft_loop_home() {
 
 	else :
 
-		echo "<p>Aucun champ flexible n'est actif sur cette page</p>";
+		echo '<p>Aucun champ flexible n\'est actif sur cette page</p>';
 
 	endif; // END if( have_rows('gn_flex_h')
 

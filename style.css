@@ -1158,6 +1158,10 @@ li.comment {
     font-size: 22px
 }
 
+.bloc-accueil-loop .entry-title {
+    margin-top: 12px;
+}
+
 .bloc-accueil p {
     margin-bottom: 0px
 }
