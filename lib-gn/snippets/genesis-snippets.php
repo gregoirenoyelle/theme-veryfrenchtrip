@@ -25,7 +25,7 @@ function gn_genesis_filter_cpt_taxo_footer() {
 //* Enlever les méta dans le footer
 remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
 remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
-remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );	
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
 }
 
 
@@ -47,18 +47,18 @@ jQuery(document).ready(function(){
 		i++;
 		if ( i > 4 ) {
 			i = 1;
-		}	
+		}
 	});
 }); // document ready
 </script>
-<?php }	
+<?php }
 }
 
 ///////////////////////
 // MAQUEUR WIDGET
 // HOME
 // VERY FRENCH TRIP V1
-// THEME MINIMUM PRO 
+// THEME MINIMUM PRO
 ///////////////////////
 
 // MARQUEUR OUVERTURE
@@ -81,8 +81,26 @@ function gn_widget_close() { ?>
 
 
 ///////////////////////
-// BOUCLE AUTEUR 
-// SUR FICHER
+// JETPACK mettre après le contenu
 ///////////////////////
+
+// genesis_after_entry_content
+add_action( 'genesis_meta', 'vft_filtre_partage' );
+function vft_filtre_partage() {
+	remove_filter( 'the_excerpt', 'sharing_display', 19 );
+	remove_filter( 'the_content', 'sharing_display', 19 );
+
+	add_action( 'genesis_after_entry_content', 'vft_change_place_partage' );
+	function vft_change_place_partage(){
+
+		if ( function_exists( 'sharing_display' ) ) {
+			echo sharing_display();
+		}
+
+	}
+
+}
+
+
 
 
